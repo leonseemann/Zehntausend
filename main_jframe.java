@@ -19,7 +19,6 @@ public class main_jframe extends zehntausend {
 
         JFrame frame = new JFrame();
 
-
         JFrame custom_input = new JFrame();
         JTextField custom_textfield = new JTextField();
         JButton custom_testfield_button = new JButton();
@@ -194,7 +193,7 @@ public class main_jframe extends zehntausend {
         button_reset.setBounds(840 + button_abstand, 210, 175, 200);
         button_reset.setText("Undo");
         button_reset.addActionListener(e -> {
-            costom(player[playerpick.getPlayer()], - playerpick.getResetPoints());
+            costom(player[playerpick.getPlayer()], -playerpick.getResetPoints());
             playerpick.setResetPoints(0);
 
             player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
@@ -220,16 +219,22 @@ public class main_jframe extends zehntausend {
         button_panel.add(button_custom);
         button_panel.add(button_reset);
 
-        //--------------Custum Input
+        // --------------Custum Input
         custom_textfield.setBounds(10, 85, 100, 20);
-        custom_testfield_button.setBounds(120, 85, 50, 20);
+        custom_testfield_button.setBounds(120, 85, 80, 20);
         custom_testfield_button.setText("Submit");
         custom_testfield_button.addActionListener(e -> {
-            int p = Integer.valueOf(custom_textfield.getText());
-            costom(player_label_name[playerpick.getPlayer()], p);
+            costom(player[playerpick.getPlayer()], Integer.parseInt(custom_textfield.getText()));
+
+            player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
+                    + "<br>Points: " + Integer.toString(player[playerpick.getPlayer()].getPoints()) + "</html>");
+            list[playerpick.getPlayer()].add(player_label_name[playerpick.getPlayer()]);
+
+            custom_input.setVisible(false);
+            custom_textfield.setText("");
         });
 
-        //-------------Custom Input Frame
+        // -------------Custom Input Frame
 
         custom_input.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         custom_input.setTitle("Custom Input");
@@ -240,7 +245,7 @@ public class main_jframe extends zehntausend {
         custom_input.add(custom_textfield);
         custom_input.add(custom_testfield_button);
 
-        //--------------Main Frame
+        // --------------Main Frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Game");
         frame.setLayout(null);
