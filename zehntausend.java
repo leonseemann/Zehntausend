@@ -34,4 +34,15 @@ public class zehntausend {
     public static void costom(Player p, int points){
         p.setPoints(p.getPoints() - points);
     }
+
+    private int playerpick;
+
+    public void setPlayer(int playerpick){
+        this.playerpick = playerpick;
+    }
+
+    public int getPlayer(){
+        return this.playerpick;
+    }
+
 }
