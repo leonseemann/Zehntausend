@@ -18,10 +18,13 @@ public class main_jframe extends zehntausend {
         }
 
         JFrame frame = new JFrame();
+
         JPanel player_panel = new JPanel();
         JPanel button_panel = new JPanel();
+
+        JButton button_1 = new JButton();
+
         JLabel[] player_label_name = new JLabel[6];
-        // JLabel[] player_label_points = new JLabel[6];
         JPanel[] list = new JPanel[6];
 
         for (int i = 0; i < 6; i++) {
@@ -30,9 +33,9 @@ public class main_jframe extends zehntausend {
 
         for (int i = 0; i < 6; i++) {
             player_label_name[i] = new JLabel();
-            player_label_name[i].setText("<html>Name: " + player[i].getName() + "<br>Points: "+ Integer.toString(player[i].getPoints()) + "</html>");
+            player_label_name[i].setText("<html>Name: " + player[i].getName() + "<br>Points: "
+                    + Integer.toString(player[i].getPoints()) + "</html>");
             list[i].add(player_label_name[i]);
-            // list[i].add(player_label_points[i]);
         }
 
         int list_distance = 0;
@@ -47,10 +50,22 @@ public class main_jframe extends zehntausend {
         player_panel.setLayout(null);
         player_panel.setBounds(0, 10, 1250, 250);
         player_panel.setBackground(new Color(0xAEB081));
+        button_1.setBounds(0, 0, 200, 200);
+        button_1.setText("3x3");
+        button_1.setBackground(Color.red);
+        int playerpick = 3-1;
+        button_1.addActionListener(e -> {
+            dreimaldrei(player[playerpick]);
+
+            
+                player_label_name[playerpick].setText("<html>Name: " + player[playerpick].getName() + "<br>Points: " + Integer.toString(player[playerpick].getPoints()) + "</html>");
+                list[playerpick].add(player_label_name[playerpick]);
+        });
 
         button_panel.setLayout(null);
         button_panel.setBounds(0, 275, 1250, 425);
         button_panel.setBackground(Color.white);
+        button_panel.add(button_1);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Game");

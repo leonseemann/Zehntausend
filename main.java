@@ -30,7 +30,7 @@ public class main extends zehntausend {
         // player[i].getPoints());
         // }
 
-        loop:  while (true) {
+        loop: while (true) {
             for (int z = 0; z < anzahl_spieler; z++) {
                 System.out.printf("Spieler:  %s%nPunkte: %s%n%n", player[z].getName(), player[z].getPoints());
             }
