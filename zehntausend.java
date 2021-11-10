@@ -35,7 +35,7 @@ public class zehntausend {
         p.setPoints(p.getPoints() - points);
     }
 
-    private int playerpick;
+    private int playerpick, resetpoints;
 
     public void setPlayer(int playerpick){
         this.playerpick = playerpick;
@@ -43,6 +43,17 @@ public class zehntausend {
 
     public int getPlayer(){
         return this.playerpick;
+    }
+
+    public void setResetPoints(int resetpoints){
+        this.resetpoints = resetpoints;
+    }
+    public void addResetPoints(int resetpoints){
+        this.resetpoints += resetpoints;
+    }
+
+    public int getResetPoints(){
+        return this.resetpoints;
     }
 
 }
