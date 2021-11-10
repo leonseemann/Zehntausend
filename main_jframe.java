@@ -1,11 +1,9 @@
 import java.awt.Color;
-import java.util.Scanner;
 
 import javax.swing.*;
 
 public class main_jframe extends zehntausend {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Erfolgreich Gestartet");
         zehntausend playerpick = new zehntausend();
         int anzahl_spieler = 6;
@@ -175,6 +173,7 @@ public class main_jframe extends zehntausend {
                 playerpick.setPlayer(0);
             } else {
                 playerpick.setPlayer(playerpick.getPlayer() + 1);
+                
             }
         });
 
@@ -225,6 +224,7 @@ public class main_jframe extends zehntausend {
         custom_testfield_button.setText("Submit");
         custom_testfield_button.addActionListener(e -> {
             costom(player[playerpick.getPlayer()], Integer.parseInt(custom_textfield.getText()));
+            playerpick.addResetPoints(Integer.parseInt(custom_textfield.getText()));
 
             player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
                     + "<br>Points: " + Integer.toString(player[playerpick.getPlayer()].getPoints()) + "</html>");
