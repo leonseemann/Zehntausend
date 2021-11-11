@@ -101,6 +101,16 @@ public class main_jframe extends zehntausend {
             list[0].add(player_label_name[0]);
 
             playerpick.setPlayer(0);
+
+            for (int j = 0; j < 6; j++) {
+                if (player[j].getName().equals("Leer")) {
+                    player[j].setPoints(379009);
+                    list[j].setBackground(Color.black);
+                }
+                player_label_name[j].setText("<html>Name: " + player[j].getName() + "<br>Points: "
+                        + Integer.toString(player[j].getPoints()) + "</html>");
+                list[j].add(player_label_name[j]);
+            }
         });
 
         name_textfield.setBounds(0, 85, 200, 25);
@@ -239,20 +249,25 @@ public class main_jframe extends zehntausend {
         button_nextPlayer.addActionListener(e -> {
             playerpick.setResetPoints(0);
 
-            if (playerpick.getPlayer() == 6 - 1) {
+            if (player[playerpick.getPlayer() + 1].getName().equals("Leer")) {
+                list[0].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                list[playerpick.getPlayer()].setBorder(null);
                 playerpick.setPlayer(0);
             } else {
-                playerpick.setPlayer(playerpick.getPlayer() + 1);
-
-            }
-
-            if (playerpick.getPlayer() < 6) {
-                list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
-                if (playerpick.getPlayer() != 0) {
-                    list[playerpick.getPlayer() - 1].setBorder(null);
+                if (playerpick.getPlayer() == 6 - 1) {
+                    playerpick.setPlayer(0);
+                } else {
+                    playerpick.setPlayer(playerpick.getPlayer() + 1);
                 }
-                if (playerpick.getPlayer() == 0) {
-                    list[5].setBorder(null);
+
+                if (playerpick.getPlayer() < 6) {
+                    list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                    if (playerpick.getPlayer() != 0) {
+                        list[playerpick.getPlayer() - 1].setBorder(null);
+                    }
+                    if (playerpick.getPlayer() == 0) {
+                        list[5].setBorder(null);
+                    }
                 }
             }
         });
