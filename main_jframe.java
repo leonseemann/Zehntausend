@@ -57,10 +57,10 @@ public class main_jframe extends zehntausend {
         }
 
         name_textfield_button.addActionListener(e -> {
-            player[playerpick.getPlayer()].setName(name_textfield.getText());
-
             if (name_textfield.getText().equals("")) {
                 name_textfield.setText("Leer");
+            } else {
+                player[playerpick.getPlayer()].setName(name_textfield.getText());
             }
 
             player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
@@ -87,18 +87,20 @@ public class main_jframe extends zehntausend {
         });
 
         name_textfield_done.addActionListener(e -> {
-            playerpick.setPlayer(0);
             name_frame.setVisible(false);
 
-            if (playerpick.getPlayer() < 6) {
-                list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
-                if (playerpick.getPlayer() != 0) {
-                    list[playerpick.getPlayer() - 1].setBorder(null);
-                }
-                if (playerpick.getPlayer() == 0) {
-                    list[5].setBorder(null);
-                }
-            }
+            list[0].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+            list[playerpick.getPlayer()].setBorder(null);
+
+            player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
+                    + "<br>Points: " + Integer.toString(player[playerpick.getPlayer()].getPoints()) + "</html>");
+            list[playerpick.getPlayer()].add(player_label_name[playerpick.getPlayer()]);
+
+            player_label_name[0].setText("<html>Name: " + player[0].getName() + "<br>Points: "
+                    + Integer.toString(player[0].getPoints()) + "</html>");
+            list[0].add(player_label_name[0]);
+
+            playerpick.setPlayer(0);
         });
 
         name_textfield.setBounds(0, 85, 200, 25);
