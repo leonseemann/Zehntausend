@@ -15,6 +15,11 @@ public class main_jframe extends zehntausend {
             player[i] = new Player();
         }
 
+        JFrame name_frame = new JFrame();
+        JTextField name_textfield = new JTextField();
+        JButton name_textfield_button = new JButton();
+        JButton name_textfield_done = new JButton();
+
         JFrame frame = new JFrame();
 
         JFrame custom_input = new JFrame();
@@ -50,6 +55,68 @@ public class main_jframe extends zehntausend {
                     + Integer.toString(player[i].getPoints()) + "</html>");
             list[i].add(player_label_name[i]);
         }
+
+        name_textfield_button.addActionListener(e -> {
+            player[playerpick.getPlayer()].setName(name_textfield.getText());
+
+            if (name_textfield.getText().equals("")) {
+                name_textfield.setText("Leer");
+            }
+
+            player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
+                    + "<br>Points: " + Integer.toString(player[playerpick.getPlayer()].getPoints()) + "</html>");
+            list[playerpick.getPlayer()].add(player_label_name[playerpick.getPlayer()]);
+
+            if (playerpick.getPlayer() == 6 - 1) {
+                playerpick.setPlayer(0);
+            } else {
+                playerpick.setPlayer(playerpick.getPlayer() + 1);
+
+            }
+
+            name_textfield.setText("");
+            if (playerpick.getPlayer() < 6) {
+                list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                if (playerpick.getPlayer() != 0) {
+                    list[playerpick.getPlayer() - 1].setBorder(null);
+                }
+                if (playerpick.getPlayer() == 0) {
+                    list[5].setBorder(null);
+                }
+            }
+        });
+
+        name_textfield_done.addActionListener(e -> {
+            playerpick.setPlayer(0);
+            name_frame.setVisible(false);
+
+            if (playerpick.getPlayer() < 6) {
+                list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                if (playerpick.getPlayer() != 0) {
+                    list[playerpick.getPlayer() - 1].setBorder(null);
+                }
+                if (playerpick.getPlayer() == 0) {
+                    list[5].setBorder(null);
+                }
+            }
+        });
+
+        name_textfield.setBounds(0, 85, 200, 25);
+
+        name_textfield_button.setBounds(650, 85, 80, 25);
+        name_textfield_done.setBounds(650, 0, 80, 25);
+        name_textfield_button.setText("Submit");
+        name_textfield_done.setText("Done");
+        name_frame.add(name_textfield_button);
+        name_frame.add(name_textfield_done);
+        name_frame.add(name_textfield);
+        name_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        name_frame.setTitle("Create Player");
+        name_frame.setLayout(null);
+        name_frame.getContentPane().setBackground(new Color(0xC9A58D));
+        name_frame.setOpacity(1f);
+        name_frame.setSize(750, 250);
+        name_frame.setResizable(false);
 
         // ---------------------------Player Panel for Stats
         int list_distance = 0;
@@ -169,11 +236,22 @@ public class main_jframe extends zehntausend {
         button_nextPlayer.setText("Next Player");
         button_nextPlayer.addActionListener(e -> {
             playerpick.setResetPoints(0);
+
             if (playerpick.getPlayer() == 6 - 1) {
                 playerpick.setPlayer(0);
             } else {
                 playerpick.setPlayer(playerpick.getPlayer() + 1);
-                
+
+            }
+
+            if (playerpick.getPlayer() < 6) {
+                list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                if (playerpick.getPlayer() != 0) {
+                    list[playerpick.getPlayer() - 1].setBorder(null);
+                }
+                if (playerpick.getPlayer() == 0) {
+                    list[5].setBorder(null);
+                }
             }
         });
 
@@ -252,11 +330,14 @@ public class main_jframe extends zehntausend {
         frame.getContentPane().setBackground(new Color(0xC9A58D));
         frame.setOpacity(1f);
         frame.setSize(1250, 750);
+        list[0].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
         frame.add(player_panel);
 
         frame.add(button_panel);
 
         frame.setResizable(false);
         frame.setVisible(true);
+        name_frame.setVisible(true);
+
     }
 }
