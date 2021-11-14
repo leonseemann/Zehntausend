@@ -115,8 +115,10 @@ public class main_jframe extends zehntausend {
 
         name_textfield.setBounds(0, 85, 200, 25);
 
-        name_textfield_button.setBounds(650, 85, 80, 25);
-        name_textfield_done.setBounds(650, 0, 80, 25);
+        int name_abstand = 15;
+
+        name_textfield_button.setBounds(650, 85 + name_abstand, 80, 25);
+        name_textfield_done.setBounds(650, 55 + name_abstand, 80, 25);
         name_textfield_button.setText("Submit");
         name_textfield_done.setText("Done");
         name_frame.add(name_textfield_button);
