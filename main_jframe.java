@@ -6,13 +6,13 @@ public class main_jframe extends zehntausend {
     public static void main(String[] args) {
         System.out.println("Erfolgreich Gestartet");
         zehntausend playerpick = new zehntausend();
-        int anzahl_spieler = 6;
+        int anzahl_spieler = 12;
 
         Player[] player = new Player[anzahl_spieler];
 
         // Schleife zum Erstellen der Spieler
         for (int i = 0; i < anzahl_spieler; i++) {
-            player[i] = new Player();
+            player[i] = new Player("test");
         }
 
         JFrame name_frame = new JFrame();
@@ -42,14 +42,14 @@ public class main_jframe extends zehntausend {
         JButton button_custom = new JButton();
         JButton button_reset = new JButton();
 
-        JLabel[] player_label_name = new JLabel[6];
-        JPanel[] list = new JPanel[6];
+        JLabel[] player_label_name = new JLabel[anzahl_spieler];
+        JPanel[] list = new JPanel[anzahl_spieler];
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < anzahl_spieler; i++) {
             list[i] = new JPanel();
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < anzahl_spieler; i++) {
             player_label_name[i] = new JLabel();
             player_label_name[i].setText("<html>Name: " + player[i].getName() + "<br>Points: "
                     + Integer.toString(player[i].getPoints()) + "</html>");
@@ -67,7 +67,7 @@ public class main_jframe extends zehntausend {
                     + "<br>Points: " + Integer.toString(player[playerpick.getPlayer()].getPoints()) + "</html>");
             list[playerpick.getPlayer()].add(player_label_name[playerpick.getPlayer()]);
 
-            if (playerpick.getPlayer() == 6 - 1) {
+            if (playerpick.getPlayer() == anzahl_spieler - 1) {
                 playerpick.setPlayer(0);
             } else {
                 playerpick.setPlayer(playerpick.getPlayer() + 1);
@@ -75,13 +75,13 @@ public class main_jframe extends zehntausend {
             }
 
             name_textfield.setText("");
-            if (playerpick.getPlayer() < 6) {
+            if (playerpick.getPlayer() < anzahl_spieler) {
                 list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
                 if (playerpick.getPlayer() != 0) {
                     list[playerpick.getPlayer() - 1].setBorder(null);
                 }
                 if (playerpick.getPlayer() == 0) {
-                    list[5].setBorder(null);
+                    list[anzahl_spieler - 1].setBorder(null);
                 }
             }
         });
@@ -102,7 +102,7 @@ public class main_jframe extends zehntausend {
 
             playerpick.setPlayer(0);
 
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < anzahl_spieler; j++) {
                 if (player[j].getName().equals("Leer")) {
                     player[j].setPoints(379009);
                     list[j].setBackground(Color.black);
@@ -135,9 +135,18 @@ public class main_jframe extends zehntausend {
         // ---------------------------Player Panel for Stats
         int list_distance = 0;
 
-        for (int i = 0; i < 6; i++) {
-            list[i].setBounds(list_distance, 25, 200, 200);
+        for (int i = 0; i < anzahl_spieler; i++) {
+            if (i < 6) {
+                list[i].setBounds(list_distance, 20, 200, 100);
+            } else {
+                list[i].setBounds(list_distance, 130, 200, 100);
+            }
             list_distance += 208;
+
+            if (i == 5) {
+                list_distance = 0;
+            }
+
             list[i].setBackground(new Color(0x7195A0));
             player_panel.add(list[i]);
         }
@@ -152,6 +161,7 @@ public class main_jframe extends zehntausend {
         button_one.setBounds(210 + button_abstand, 0, 200, 200);
         button_one.setText("One");
         button_one.addActionListener(e -> {
+            System.out.println("One");
             eins(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(100);
 
@@ -164,6 +174,7 @@ public class main_jframe extends zehntausend {
         button_five.setBounds(0 + button_abstand, 0, 200, 200);
         button_five.setText("Five");
         button_five.addActionListener(e -> {
+            System.out.println("Five");
             fuenf(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(50);
 
@@ -176,6 +187,7 @@ public class main_jframe extends zehntausend {
         button_street.setBounds(420 + button_abstand, 0, 200, 200);
         button_street.setText("Street");
         button_street.addActionListener(e -> {
+            System.out.println("street");
             strasse(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(2000);
 
@@ -188,6 +200,7 @@ public class main_jframe extends zehntausend {
         button_3mal2.setBounds(630 + button_abstand, 0, 200, 200);
         button_3mal2.setText("3x2");
         button_3mal2.addActionListener(e -> {
+            System.out.println("3x2");
             dreimalzwei(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(200);
 
@@ -200,6 +213,7 @@ public class main_jframe extends zehntausend {
         button_3mal3.setBounds(0 + button_abstand, 210, 200, 200);
         button_3mal3.setText("3x3");
         button_3mal3.addActionListener(e -> {
+            System.out.println("3x3");
             dreimaldrei(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(300);
 
@@ -212,6 +226,7 @@ public class main_jframe extends zehntausend {
         button_3mal4.setBounds(210 + button_abstand, 210, 200, 200);
         button_3mal4.setText("3x4");
         button_3mal4.addActionListener(e -> {
+            System.out.println("3x4");
             dreimalvier(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(400);
 
@@ -224,6 +239,7 @@ public class main_jframe extends zehntausend {
         button_3mal5.setBounds(420 + button_abstand, 210, 200, 200);
         button_3mal5.setText("3x5");
         button_3mal5.addActionListener(e -> {
+            System.out.println("3x5");
             dreimalfuenf(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(500);
 
@@ -236,6 +252,7 @@ public class main_jframe extends zehntausend {
         button_3mal6.setBounds(630 + button_abstand, 210, 200, 200);
         button_3mal6.setText("3x6");
         button_3mal6.addActionListener(e -> {
+            System.out.println("3x6");
             dreimalsechs(player[playerpick.getPlayer()]);
             playerpick.addResetPoints(600);
 
@@ -249,26 +266,47 @@ public class main_jframe extends zehntausend {
         button_nextPlayer.setBounds(1025 + button_abstand, 0, 175, 410);
         button_nextPlayer.setText("Next Player");
         button_nextPlayer.addActionListener(e -> {
+            System.out.println("next Player");
             playerpick.setResetPoints(0);
 
-            if (player[playerpick.getPlayer() + 1].getName().equals("Leer")) {
-                list[0].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
-                list[playerpick.getPlayer()].setBorder(null);
-                playerpick.setPlayer(0);
-            } else {
-                if (playerpick.getPlayer() == 6 - 1) {
+            if (playerpick.getPlayer() == anzahl_spieler - 1) {
+                if (playerpick.getPlayer() == anzahl_spieler - 1) {
                     playerpick.setPlayer(0);
+                    System.out.println("PLAYER SET 0");
                 } else {
                     playerpick.setPlayer(playerpick.getPlayer() + 1);
                 }
 
-                if (playerpick.getPlayer() < 6) {
+                if (playerpick.getPlayer() < anzahl_spieler) {
                     list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
                     if (playerpick.getPlayer() != 0) {
                         list[playerpick.getPlayer() - 1].setBorder(null);
                     }
                     if (playerpick.getPlayer() == 0) {
-                        list[5].setBorder(null);
+                        list[anzahl_spieler - 1].setBorder(null);
+                    }
+                }
+            } else {
+                if (player[playerpick.getPlayer() + 1].getName().equals("Leer")) {
+                    list[0].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                    list[playerpick.getPlayer()].setBorder(null);
+                    playerpick.setPlayer(0);
+                } else {
+                    if (playerpick.getPlayer() == anzahl_spieler - 1) {
+                        playerpick.setPlayer(0);
+                        System.out.println("PLAYER SET 0");
+                    } else {
+                        playerpick.setPlayer(playerpick.getPlayer() + 1);
+                    }
+
+                    if (playerpick.getPlayer() < anzahl_spieler) {
+                        list[playerpick.getPlayer()].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.red));
+                        if (playerpick.getPlayer() != 0) {
+                            list[playerpick.getPlayer() - 1].setBorder(null);
+                        }
+                        if (playerpick.getPlayer() == 0) {
+                            list[anzahl_spieler - 1].setBorder(null);
+                        }
                     }
                 }
             }
@@ -278,6 +316,7 @@ public class main_jframe extends zehntausend {
         button_custom.setBounds(840 + button_abstand, 0, 175, 200);
         button_custom.setText("Costom");
         button_custom.addActionListener(e -> {
+            System.out.println("custom");
             custom_input.setVisible(true);
 
             player_label_name[playerpick.getPlayer()].setText("<html>Name: " + player[playerpick.getPlayer()].getName()
@@ -285,10 +324,11 @@ public class main_jframe extends zehntausend {
             list[playerpick.getPlayer()].add(player_label_name[playerpick.getPlayer()]);
         });
 
-        // --------------Button - reset
+        // --------------Button - Undo
         button_reset.setBounds(840 + button_abstand, 210, 175, 200);
         button_reset.setText("Undo");
         button_reset.addActionListener(e -> {
+            System.out.println("Undo");
             costom(player[playerpick.getPlayer()], -playerpick.getResetPoints());
             playerpick.setResetPoints(0);
 
