@@ -12,7 +12,7 @@ public class main_jframe extends zehntausend {
 
         // Schleife zum Erstellen der Spieler
         for (int i = 0; i < anzahl_spieler; i++) {
-            player[i] = new Player("test");
+            player[i] = new Player();
         }
 
         JFrame name_frame = new JFrame();
